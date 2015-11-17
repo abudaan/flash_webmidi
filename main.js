@@ -30,16 +30,32 @@ window.onload = function(){
   }
 
 
+  // send MIDI event to all connected outputs
+  function sendMIDIEvent(event){
+    midiAccess.outputs.forEach(function(port){
+      port.send(event);
+    });
+  }
+
+
+  // send a timed MIDI event to all connected outputs
+  function sendTimedMIDIEvent(event, delay){
+    setTimeout(function(){
+      sendMIDIEvent(event);
+    }, delay);
+  }
+
+
   // create MIDI event dependent on incoming queue id
   window.sendToLightingControl = function(id){
-    var type, channel, data1, data2;
+    console.log(id);
 
     switch(id){
       case 'que_1':
-        type = 144; // note on
-        channel = 0;
-        data1 = 60; // central c
-        data2 = 100; // velocity
+        sendTimedMIDIEvent([144, 60, 100], 0); // note on event, channel 0, central c, velocity 100
+        sendTimedMIDIEvent([128, 60, 0], 200); // note off event, channel 0, central c
+        sendTimedMIDIEvent([144, 62, 100], 210);
+        sendTimedMIDIEvent([128, 62, 0], 410);
         break;
       case 'queue_1':
         // add your own MIDI data here
@@ -50,10 +66,5 @@ window.onload = function(){
         break;
     }
 
-    // send MIDI event to all connected outputs
-    midiAccess.outputs.forEach(function(port){
-      console.log(id, ': ', type + channel, data1, data2);
-      port.send([type + channel, data1, data2]);
-    });
   };
 };
