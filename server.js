@@ -1,6 +1,5 @@
 var navigator = require('web-midi-api');
 var net = require('net');
-var StringDecoder = require('string_decoder').StringDecoder;
 var midiAccess;
 var policyFile;
 var socket;

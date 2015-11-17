@@ -1,48 +1,18 @@
 ###WebMIDI and Flash
 
-This simple project allows you to send MIDI commands to a lighting console from a Flash time line.
+This project allows you to send MIDI commands to a lighting console from a Flash projector file. It contains a simple socket server and a Flash file that connects to this socket server.
 
-If you click on the button, the .swf file makes a call to javascript using ExternalInterface:
+ - 1 First install [Nodejs](https://nodejs.org/en/) if you haven't already.
 
-```
-ExternalInterface.call("sendToLightingControl('que_1')");
-```
+ - 2 Then checkout this project using git (branch: standalone) or by downloading the [zip file](https://github.com/abudaan/webmidi_flash/archive/standalone.zip).
 
-The function `sendToLightingControl` is a global javascript function. Global functions are ugly, but it works and it is the simplest solution.
+ - 3 Open your terminal and cd into the folder where you have stored the project: `cd path/to/project`. Note that this folder should contain a file named `package.json`.
 
-The parameter `que_1` is the queue id.
+ - 4 Then type this command in your terminal: `npm install`.
 
-In the file main.js you can easily add new queue ids and create MIDI events for that specific queue:
+ - 5 After the command has finished, start the socket server: `node server.js`.
 
-```
-    switch(id){
-      case 'queue_1':
-        // send MIDI event(s)
-        break;
-      case 'queue_2':
-        // send other MIDI event(s)
-        break;
-      ... // add as many queues as you need
-    }
-```
+ - 6 Now start the Flash projector (.exe on Windows and .app on OSX)
 
+ - 7 Pressing the button sends a MIDI event to all outputs, on OSX you will hear two piano notes playing
 
-####installation
-
-First install [Nodejs](https://nodejs.org/en/) if you haven't already.
-
-Then checkout this project using git or by downloading the [zip file](https://github.com/abudaan/webmidi_flash/archive/master.zip)
-
-Open your terminal and cd into the folder where you have stored the project. Note that this folder should have a file named `package.json`:
-
-`cd path/to/project`
-
-Then type this command in your terminal:
-
-`npm install`
-
-After the command has finished, start a local webserver:
-
-`npm run start`
-
-Now the project runs at [http://localhost:8000](http://localhost:8000)
