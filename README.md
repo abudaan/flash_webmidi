@@ -1,6 +1,6 @@
 ###WebMIDI and Flash
 
-This project allows you to send MIDI commands to a lighting console from a Flash projector file. It contains a simple socket server and a Flash file that connects to this socket server.
+This project allows you to send MIDI commands from a Flash projector file. It contains a simple socket server and a Flash file that connects to this socket server.
 
  - 1 First install [Nodejs](https://nodejs.org/en/) if you haven't already.
 
