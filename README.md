@@ -17,15 +17,12 @@ In the file main.js you can easily add new queue ids and create MIDI events for 
 ```
     switch(id){
       case 'queue_1':
-        type = 144; // note on
-        channel = 0;
-        data1 = 60; // central c
-        data2 = 100; // velocity
+        // send MIDI event(s)
         break;
       case 'queue_2':
-        // add your own MIDI data here
+        // send other MIDI event(s)
         break;
-      ...
+      ... // add as many queues as you need
     }
 ```
 
