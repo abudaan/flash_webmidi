@@ -8,7 +8,7 @@ If you click on the button, the .swf file makes a call to javascript using Exter
 ExternalInterface.call("sendToLightingControl('que_1')");
 ```
 
-The function `sendToLightingControl` is a global javascript function. This is ugly, but it works and it is the simplest solution.
+The function `sendToLightingControl` is a global javascript function. Global functions are ugly, but it works and it is the simplest solution.
 
 The parameter `que_1` is the queue id.
 
