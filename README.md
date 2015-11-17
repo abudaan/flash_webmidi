@@ -1,8 +1,8 @@
 ###WebMIDI and Flash
 
-This simple project allows you to send commands to a lighting control from a Flash time line.
+This simple project allows you to send MIDI commands to a lighting console from a Flash time line.
 
-If you click on the button the .swf file makes a call to javascript using ExternalInterface:
+If you click on the button, the .swf file makes a call to javascript using ExternalInterface:
 
 ```
 ExternalInterface.call("sendToLightingControl('que_1')");
@@ -12,7 +12,7 @@ The function `sendToLightingControl` is a global javascript function. This is ug
 
 The parameter `que_1` is the queue id.
 
-In the file main.js you can easily add new queue ids and create MIDI events for that specific id:
+In the file main.js you can easily add new queue ids and create MIDI events for that specific queue:
 
 ```
     switch(id){
@@ -36,7 +36,7 @@ First install [Nodejs](https://nodejs.org/en/) then open your terminal and enter
 
 `npm install`
 
-Start a local webserver by the command:
+After the command has finished, start a local webserver:
 
 `npm run start`
 
