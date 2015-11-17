@@ -1,4 +1,4 @@
-###Flash and WebMIDI
+###WebMIDI and Flash
 
 This simple project allows you to send commands to a lighting control from a Flash time line.
 
