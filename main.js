@@ -9,24 +9,14 @@ window.onload = function(){
     navigator.requestMIDIAccess().then(
       function onFulfilled(access){
         midiAccess = access;
-        initFlash();
+        sendMIDI();
       },
       function onRejected(e){
-        alert('no WebMIDI!');
+        console.log('no WebMIDI!');
       }
     );
   }else{
-    alert('no WebMIDI!');
-  }
-
-
-  // add Flash as soon as WebMIDI has been initialised
-  function initFlash(){
-    var object = document.createElement('object');
-    object.width = '1920';
-    object.height = '1080';
-    object.data = 'knopExternalInterface.swf';
-    document.body.appendChild(object);
+    console.log('no WebMIDI!');
   }
 
 
@@ -46,11 +36,10 @@ window.onload = function(){
   }
 
 
-  // create MIDI event dependent on incoming queue id
-  window.sendToLightingControl = function(id){
-    console.log(id);
-
-    switch(id){
+  // create MIDI event dependent on incoming queue id in the hash of the url
+  function sendMIDI(){
+    var queueId = window.location.hash.substring(1);
+    switch(queueId){
       case 'que_1':
         sendTimedMIDIEvent([144, 60, 100], 0); // note on event, channel 0, central c, velocity 100
         sendTimedMIDIEvent([128, 60, 0], 200); // note off event, channel 0, central c
@@ -64,7 +53,8 @@ window.onload = function(){
         break;
       case 'queue_3':
         break;
+      default:
+        console.log('nothing to do');
     }
-
-  };
+  }
 };
