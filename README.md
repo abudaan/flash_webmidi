@@ -32,7 +32,15 @@ In the file main.js you can easily add new queue ids and create MIDI events for 
 
 ####installation
 
-First install [Nodejs](https://nodejs.org/en/) then open your terminal and enter:
+First install [Nodejs](https://nodejs.org/en/) if you haven't already.
+
+Then checkout this project using git or by downloading the [zip file](https://github.com/abudaan/webmidi_flash/archive/master.zip)
+
+Open your terminal and cd into the folder where you have stored the project. Note that this folder should have a file named `package.json`:
+
+`cd path/to/project`
+
+Then type this command in your terminal:
 
 `npm install`
 
