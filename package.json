@@ -1,0 +1,13 @@
+{
+  "name": "blogopera",
+  "private": true,
+  "devDependencies": {
+    "local-web-server": "^0.5.16"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "scripts": {
+    "start": "ws"
+  }
+}
