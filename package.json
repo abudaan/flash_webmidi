@@ -1,13 +1,10 @@
 {
   "name": "blogopera",
   "private": true,
-  "devDependencies": {
-    "local-web-server": "^0.5.16"
+  "dependencies": {
+    "web-midi-api": "^1.4.4"
   },
   "engines": {
     "node": "0.10.x"
-  },
-  "scripts": {
-    "start": "ws"
   }
 }
