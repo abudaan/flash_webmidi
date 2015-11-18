@@ -1,3 +1,4 @@
+// connect is the instance name of the "Send MIDI" button on stage
 connect.addEventListener(MouseEvent.CLICK, connectToServer);
 
 var socket = new Socket();
