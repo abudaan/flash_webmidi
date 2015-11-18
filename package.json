@@ -2,7 +2,7 @@
   "name": "blogopera",
   "private": true,
   "dependencies": {
-    "web-midi-api": "^1.4.4"
+    "jazz-midi": ">=1.4.6"
   },
   "engines": {
     "node": "0.10.x"

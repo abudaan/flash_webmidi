@@ -1,8 +1,7 @@
-var navigator = require('web-midi-api');
+var jazz = require('jazz-midi');
 var net = require('net');
-var midiAccess;
-var policyFile;
 var socket;
+var outputs = Jazz.MidiOutList;
 
 
 // process incoming socket message and create MIDI event(s)
@@ -27,7 +26,7 @@ function processMessage(id){
     case 'queue_3':
       break;
     default:
-      console.log('nothing to do');    
+      console.log('nothing to do');
   }
 }
 
@@ -35,9 +34,10 @@ function processMessage(id){
 // send MIDI event to all connected outputs
 function sendMIDIEvent(event){
   console.log('sending MIDI', event);
-  midiAccess.outputs.forEach(function(port){
-    port.send(event);
-  });
+  for(i in outputs){
+    Jazz.MidiOutOpen(i);
+    Jazz.MidiOut(event);
+  }
 }
 
 
@@ -46,23 +46,6 @@ function sendTimedMIDIEvent(event, delay){
   setTimeout(function(){
     sendMIDIEvent(event);
   }, delay);
-}
-
-
-function startMIDI(){
-  navigator.requestMIDIAccess().then(
-    function onMIDISuccess(access){
-      console.log('connected to MIDI system');
-      midiAccess = access;
-      midiAccess.outputs.forEach(function(port){
-        port.open();
-      });
-      startServer();
-    }, 
-    function onMIDIFailure(){
-      console.log('error connecting to MIDI system');
-    }
-  );  
 }
 
 
@@ -75,8 +58,4 @@ function startServer(){
   }).listen(8000);
 }
 
-require('fs').readFile('./flashpolicy.xml', 'utf8', function (error, file) {
-  if (error) throw error;
-  policyFile = file;
-  startMIDI();
-});
+startServer();
