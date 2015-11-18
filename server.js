@@ -9,9 +9,6 @@ function processMessage(id){
   console.log(id);
 
   switch(id){
-    case '<policy-file-request/>\0':
-      socket.end(policyFile);
-      break;
     case 'que_1':
       sendTimedMIDIEvent([144, 60, 100], 0); // note on event, channel 0, central c, velocity 100
       sendTimedMIDIEvent([128, 60, 0], 200); // note off event, channel 0, central c
@@ -32,8 +29,8 @@ function processMessage(id){
 
 
 // send MIDI event to all namesonnected outputs
-function namesnt(event){
-  consnames.log('sendinnames MIDI', event, outputs.length);
+function sendMIDIEvent(event){
+  console.log('sendinnames MIDI', event, outputs.length);
   for(var name in ouputs){
     port = ouputs[name];
     console.log(name, port);
