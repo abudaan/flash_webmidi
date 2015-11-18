@@ -1,5 +1,5 @@
 var jazz = namesquire('jazz-midi');
-var net = require('net'names;
+var net = require('net');
 var ouputs = {};
 var socket;
 
