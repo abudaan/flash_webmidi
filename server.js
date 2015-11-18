@@ -11,17 +11,17 @@ function processMessage(id){
   switch(id){
     case 'que_1':
 
-      var port = new jazz.MIDI();
-      var list = port.MidiOutList();
-      console.log(list[1]);
-      port.MidiOutOpen(list[1]);
-      port.MidiOut(144, 60, 100);
-      port.MidiOutClose();
+      // var port = new jazz.MIDI();
+      // var list = port.MidiOutList();
+      // console.log(list[1]);
+      // port.MidiOutOpen(list[1]);
+      // port.MidiOut(144, 60, 100);
+      // port.MidiOutClose();
 
-      // sendTimedMIDIEvent([144, 60, 100], 0); // note on event, channel 0, central c, velocity 100
-      // sendTimedMIDIEvent([128, 60, 0], 200); // note off event, channel 0, central c
-      // sendTimedMIDIEvent([144, 62, 100], 210);
-      // sendTimedMIDIEvent([128, 62, 0], 410);
+      sendTimedMIDIEvent([144, 60, 100], 0); // note on event, channel 0, central c, velocity 100
+      sendTimedMIDIEvent([128, 60, 0], 200); // note off event, channel 0, central c
+      sendTimedMIDIEvent([144, 62, 100], 210);
+      sendTimedMIDIEvent([128, 62, 0], 410);
       break;
     case 'queue_1':
       // add your own MIDI data here
@@ -66,9 +66,9 @@ function startServer(){
 function startMIDI(){
   var midi = new jazz.MIDI();
   var names = midi.MidiOutList();
-  for(var name in names){
-    //console.log(name);
+  for(var i = 0; i < names.length; i++){
     var port = new jazz.MIDI();
+    var name = names[i];
     var n = port.MidiOutOpen(name);
     ouputs[name] = port;
     console.log('n', n, 'name', name);
@@ -97,4 +97,4 @@ process.on('SIGINT', exitHandler.bind(null, {exit:true}));
 //catches uncaught exceptions
 process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 
-startServer();
+startMIDI();
