@@ -64,6 +64,11 @@ function startMIDI(){
   for(var i = 0; i < numOutputs; i++){
     var port = new jazz.MIDI();
     var name = names[i];
+    console.log('opening port', name);
+    port.MidiOutOpen(name);
+    outputs.push(port);
+/*
+    // this causes errors on Windows
     var n = port.MidiOutOpen(name);
     if(n === name){
       console.log('opening port', name);
@@ -71,6 +76,7 @@ function startMIDI(){
     }else{
       console.log('could not open MIDI output', name);
     }
+*/
   }
   startServer();
 }
