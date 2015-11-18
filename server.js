@@ -28,9 +28,9 @@ function processMessage(id){
 }
 
 
-// send MIDI event to all namesonnected outputs
+// send MIDI event to all connected outputs
 function sendMIDIEvent(event){
-  console.log('sendinnames MIDI', event, outputs.length);
+  console.log('sending MIDI', event);
   for(var name in ouputs){
     port = ouputs[name];
     console.log(name, port);
