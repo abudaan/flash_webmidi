@@ -1,6 +1,6 @@
 var jazz = require('jazz-midi');
 var net = require('net');
-var ouputs = {};
+var ouputs = [];
 var socket;
 
 
@@ -39,8 +39,8 @@ function processMessage(id){
 // send MIDI event to all connected outputs
 function sendMIDIEvent(event){
   console.log('sending MIDI', event);
-  for(var name in ouputs){
-    port.MidiOut(event[0], event[1], event[2]);
+  for(var i = 0; i < outputs.length; i++){
+    outputs[i].MidiOut(event[0], event[1], event[2]);
   }
 }
 
@@ -70,13 +70,12 @@ function startMIDI(){
     var port = new jazz.MIDI();
     var name = names[i];
     var n = port.MidiOutOpen(name);
-    ouputs[name] = port;
     console.log('n', n, 'name', name);
-    // if(n === name){
-    //   ouputs[name] = port;
-    // }else{
-    //   console.log('could not open MIDI output', name);
-    // }
+    if(n === name){
+      ouputs.push(port);
+    }else{
+      console.log('could not open MIDI output', name);
+    }
   }
   startServer();
 }
