@@ -12,7 +12,9 @@ function processMessage(id){
     case 'que_1':
 
       var port = new jazz.MIDI();
-      port.MidiOutOpen(1);
+      var list = port.MidiOutList();
+      console.log(list[1]);
+      port.MidiOutOpen(list[1]);
       port.MidiOut(144, 60, 100);
       port.MidiOutClose();
 
@@ -95,4 +97,4 @@ process.on('SIGINT', exitHandler.bind(null, {exit:true}));
 //catches uncaught exceptions
 process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 
-startMIDI();
+startServer();
