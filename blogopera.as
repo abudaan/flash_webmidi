@@ -7,14 +7,14 @@ socket.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
 
 
 function securityErrorHandler(error:SecurityError){
-	trace(error);	
+  trace(error); 
 }
 
 function ioErrorHandler(error:IOErrorEvent){
-	trace(error);	
+  trace(error); 
 }
 
 function connectToServer(event:MouseEvent){
-	socket.writeUTFBytes('que_1');
-	socket.flush();
+  socket.writeUTFBytes('que_1');
+  socket.flush();
 }
