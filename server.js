@@ -12,14 +12,6 @@ function processMessage(id){
 
   switch(id){
     case 'que_1':
-
-      // var port = new jazz.MIDI();
-      // var list = port.MidiOutList();
-      // console.log(list[1]);
-      // port.MidiOutOpen(list[1]);
-      // port.MidiOut(144, 60, 100);
-      // port.MidiOutClose();
-
       sendTimedMIDIEvent([144, 60, 100], 0); // note on event, channel 0, central c, velocity 100
       sendTimedMIDIEvent([128, 60, 0], 200); // note off event, channel 0, central c
       sendTimedMIDIEvent([144, 62, 100], 210);
