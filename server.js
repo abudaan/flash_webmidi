@@ -69,3 +69,4 @@ function startMIDI(){
   startServer();
 }
 
+startMIDI();
