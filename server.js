@@ -2,6 +2,7 @@ var jazz = require('jazz-midi');
 var net = require('net');
 var outputs = [];
 var numOutputs;
+var names;
 var socket;
 
 
@@ -66,14 +67,14 @@ function startServer(){
 
 function startMIDI(){
   var midi = new jazz.MIDI();
-  var names = midi.MidiOutList();
+  names = midi.MidiOutList();
   numOutputs = names.length;
   for(var i = 0; i < numOutputs; i++){
     var port = new jazz.MIDI();
     var name = names[i];
     var n = port.MidiOutOpen(name);
     if(n === name){
-      console.log('n', n, 'name', name);
+      console.log('opening port', name);
       outputs.push(port);
     }else{
       console.log('could not open MIDI output', name);
@@ -86,7 +87,7 @@ function exitHandler(options, err) {
   if(options.exit){
     for(var i = 0; i < numOutputs; i++){
       var output = outputs[i];
-      console.log('closing port', output.name);
+      console.log('closing port', names[i]);
       output.MidiOutClose();
     }
     process.exit();
