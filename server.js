@@ -62,11 +62,13 @@ function startMIDI(){
     //console.log(name);
     var port = new jazz.MIDI();
     var n = port.MidiOutOpen(name);
-    if(n === name){
-      ouputs[name] = port;
-    }else{
-      console.log('could not open MIDI output', name);
-    }
+    ouputs[name] = port;
+    console.log('n', n, 'name', name);
+    // if(n === name){
+    //   ouputs[name] = port;
+    // }else{
+    //   console.log('could not open MIDI output', name);
+    // }
   }
   startServer();
 }
