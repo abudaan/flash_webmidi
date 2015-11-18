@@ -1,7 +1,8 @@
 var jazz = require('jazz-midi');
+var midi = new jazz.MIDI();
 var net = require('net');
 var socket;
-var outputs = Jazz.MidiOutList;
+var outputs = midi.MidiOutList();
 
 
 // process incoming socket message and create MIDI event(s)
@@ -35,8 +36,9 @@ function processMessage(id){
 function sendMIDIEvent(event){
   console.log('sending MIDI', event);
   for(i in outputs){
-    Jazz.MidiOutOpen(i);
-    Jazz.MidiOut(event);
+    midi.MidiOutOpen(i);
+    midi.MidiOut(event);
+    midi.MidiOutClose();
   }
 }
 
