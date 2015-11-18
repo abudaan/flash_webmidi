@@ -64,7 +64,7 @@ function startMIDI(){
   var names = midi.MidiOutList();
   for(var name in names){
     console.log(name);
-    ouputs[name] = new Jazz.MIDI();
+    ouputs[name] = new jazz.MIDI();
   }
   startServer();
 }
