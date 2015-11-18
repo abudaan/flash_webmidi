@@ -36,9 +36,8 @@ function sendMIDIEvent(event){
   var outputs = midi.MidiOutList();
   console.log('sending MIDI', event, outputs.length);
   for(i in outputs){
-    var port = midi.MidiOutOpen(i);
-    console.log(port);
-    midi.MidiOutLong(event);
+    midi.MidiOutOpen(i);
+    midi.MidiOut(event[0],event[1],event[2]);
     midi.MidiOutClose();
   }
 }
