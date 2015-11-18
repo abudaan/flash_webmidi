@@ -32,11 +32,7 @@ function processMessage(id){
 function sendMIDIEvent(event){
   console.log('sending MIDI', event);
   for(var name in ouputs){
-    port = ouputs[name];
-    var n = port.MidiOutOpen(name);
-    console.log(n, name, event[0], event[1], event[2]);
     port.MidiOut(event[0], event[1], event[2]);
-    port.MidiOutClose();
   }
 }
 
@@ -64,9 +60,31 @@ function startMIDI(){
   var names = midi.MidiOutList();
   for(var name in names){
     //console.log(name);
-    ouputs[name] = new jazz.MIDI();
+    var port = new jazz.MIDI();
+    var n = port.MidiOutOpen(name);
+    if(n === name){
+      ouputs[name] = port;
+    }else{
+      console.log('could not open MIDI output', name);
+    }
   }
   startServer();
 }
+
+function exitHandler(options, err) {
+  if(options.exit){
+    for(var name in ouputs){
+      port = outputs[name];
+      port.MidiOutClose();
+    }
+    process.exit();
+  }
+}
+
+//catches ctrl+c event
+process.on('SIGINT', exitHandler.bind(null, {exit:true}));
+
+//catches uncaught exceptions
+process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 
 startMIDI();
