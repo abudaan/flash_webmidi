@@ -33,9 +33,9 @@ function sendMIDIEvent(event){
   console.log('sending MIDI', event);
   for(var name in ouputs){
     port = ouputs[name];
-    console.log(name, port);
-    port.MidiOutOpen(name);
-    port.MidiOut(event[0],event[1],event[2]);
+    var n = port.MidiOutOpen(name);
+    console.log(n, name, event[0], event[1], event[2]);
+    port.MidiOut(event[0], event[1], event[2]);
     port.MidiOutClose();
   }
 }
@@ -63,7 +63,7 @@ function startMIDI(){
   var midi = new jazz.MIDI();
   var names = midi.MidiOutList();
   for(var name in names){
-    console.log(name);
+    //console.log(name);
     ouputs[name] = new jazz.MIDI();
   }
   startServer();
