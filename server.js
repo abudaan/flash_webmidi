@@ -10,10 +10,16 @@ function processMessage(id){
 
   switch(id){
     case 'que_1':
-      sendTimedMIDIEvent([144, 60, 100], 0); // note on event, channel 0, central c, velocity 100
-      sendTimedMIDIEvent([128, 60, 0], 200); // note off event, channel 0, central c
-      sendTimedMIDIEvent([144, 62, 100], 210);
-      sendTimedMIDIEvent([128, 62, 0], 410);
+
+      var port = new jazz.MIDI();
+      port.MidiOutOpen(1);
+      port.MidiOut(144, 60, 100);
+      port.MidiOutClose();
+
+      // sendTimedMIDIEvent([144, 60, 100], 0); // note on event, channel 0, central c, velocity 100
+      // sendTimedMIDIEvent([128, 60, 0], 200); // note off event, channel 0, central c
+      // sendTimedMIDIEvent([144, 62, 100], 210);
+      // sendTimedMIDIEvent([128, 62, 0], 410);
       break;
     case 'queue_1':
       // add your own MIDI data here
@@ -75,7 +81,7 @@ function startMIDI(){
 
 function exitHandler(options, err) {
   if(options.exit){
-    for(var name in ouputs){
+    for(var name in outputs){
       port = outputs[name];
       port.MidiOutClose();
     }
