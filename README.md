@@ -1,4 +1,4 @@
-###WebMIDI and Flash
+### WebMIDI and Flash
 
 This project allows you to send MIDI commands from a Flash projector file. It contains a simple socket server and a Flash file that connects to this socket server.
 
